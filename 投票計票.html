@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>社區投票機</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin: 50px; background: #f4f4f9; }
+    h1 { color: #333; }
+    button { font-size: 24px; margin: 15px; padding: 20px 40px; border-radius: 12px; border: none; cursor: pointer; }
+    .yes { background-color: #4CAF50; color: white; }
+    .no { background-color: #f44336; color: white; }
+    .reset { background-color: #777; color: white; font-size: 16px; padding: 10px 20px; }
+    .result { margin-top: 30px; font-size: 28px; }
+  </style>
+</head>
+<body>
+  <h1>社區投票機</h1>
+  <button class="yes" onclick="vote('yes')">同意</button>
+  <button class="no" onclick="vote('no')">不同意</button>
+  <br><br>
+  <button class="reset" onclick="resetVote()">重設投票</button>
+
+  <div class="result">
+    <p>總投票數: <span id="total">0</span></p>
+    <p>同意票數: <span id="yes">0</span></p>
+    <p>不同意票數: <span id="no">0</span></p>
+  </div>
+
+  <script>
+    let yesCount = 0;
+    let noCount = 0;
+
+    function vote(type) {
+      if (type === 'yes') yesCount++;
+      if (type === 'no') noCount++;
+      updateDisplay();
+    }
+
+    function resetVote() {
+      yesCount = 0;
+      noCount = 0;
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      document.getElementById('yes').textContent = yesCount;
+      document.getElementById('no').textContent = noCount;
+      document.getElementById('total').textContent = yesCount + noCount;
+    }
+  </script>
+</body>
+</html>
